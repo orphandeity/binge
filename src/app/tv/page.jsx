@@ -19,16 +19,12 @@ const TV = async () => {
   return (
     <main>
       <section>
-        <div className="relative px-3 py-2">
-          <h2 className="text-xl font-semibold ">
-            What's <span className="text-2xl font-bold">trending</span> this
-            week?
-          </h2>
-          <div className="absolute inset-0 -z-10 bg-slate-300" />
-        </div>
-        <div className="flex items-center justify-center px-3 py-2">
-          <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-            {results.map((r) => (
+        <h2 className='py-6 text-center text-3xl font-light sm:text-4xl xl:text-5xl'>
+          What's <span className='font-semibold'>trending</span> this week?
+        </h2>
+        <div className='flex items-center justify-center px-3 py-2'>
+          <div className='grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5'>
+            {results.map(r => (
               <Link key={r.id} href={`/tv/${r.id}`}>
                 <Image
                   src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/w500${r.poster_path}`}

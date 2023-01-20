@@ -1,19 +1,17 @@
 import Image from 'next/image';
 import popcorn from '../assets/popcorn.jpg';
-import SearchBar from '@/components/SearchBar';
 
 export default function Home() {
   return (
-    <main className='container relative mx-auto'>
-      <Image src={popcorn} alt='' fill className='-z-50 object-cover' />
-      <h1 className='font- pt-8 text-center text-5xl font-black leading-relaxed text-red-500 drop-shadow-md'>
-        Find the
-        <br />
-        next
-        <br />
-        Binge-worthy hit!
-      </h1>
-      <SearchBar />
+    <main>
+      <div className='relative'>
+        <h2 className='mt-40 text-center text-7xl font-extralight text-slate-700 drop-shadow-md'>
+          Find details on the latest{' '}
+          <span className='font-semibold'>trending</span> hits!
+        </h2>
+        <div className='absolute -inset-1 -z-30 rounded-full bg-white blur-3xl' />
+      </div>
+      <Image src={popcorn} sizes='100vw' fill className='-z-50 object-cover' />
     </main>
   );
 }
