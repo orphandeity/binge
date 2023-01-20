@@ -13,7 +13,7 @@ export async function generateStaticParams() {
   );
   const { results } = await res.json();
 
-  return results.map((r) => ({
+  return results.map(r => ({
     id: r.id.toString(),
   }));
 }
@@ -32,46 +32,52 @@ const Movie = async ({ params }) => {
 
   return (
     <main>
-      <h2 className="text-4xl font-thin">{data.name}</h2>
-
       {/* backdrop image */}
-      <div className="relative mx-auto aspect-video">
+      <div className='relative mx-auto aspect-video'>
         <Image
           src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/original${data.backdrop_path}`}
           alt={data.name}
           fill
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          className="object-cover"
+          sizes='100vw'
+          className='object-cover'
         />
+        <h2 className='absolute bottom-0 left-0 z-50 w-full bg-gradient-to-t from-slate-900/70 to-transparent px-3 py-2 text-4xl font-thin text-white'>
+          {data.name}
+        </h2>
       </div>
 
       {/* genres */}
-      <div className="flex flex-wrap items-center justify-around gap-3 py-2">
-        {data.genres.map((genre) => (
-          <div
-            key={genre.id}
-            className="rounded-full bg-slate-100 px-3 py-2 text-xs text-slate-500"
-          >
-            {genre.name}
-          </div>
-        ))}
-      </div>
+      <div className='flex flex-col'>
+        <div className='flex flex-wrap items-center justify-end gap-3 py-2'>
+          {data.genres.map(genre => (
+            <div
+              key={genre.id}
+              className='rounded-full bg-slate-50 px-3 py-2 text-xs text-slate-400'
+            >
+              {genre.name}
+            </div>
+          ))}
+        </div>
 
-      {/* details */}
-      <p className="text-sm text-slate-500">
-        <span className="font-semibold">Seasons: </span>
-        {data.number_of_seasons}
-      </p>
-      <p className="text-sm text-slate-500">
-        <span className="font-semibold">Episodes: </span>
-        {data.number_of_episodes}
-      </p>
-      <p className="text-sm text-slate-500">
-        <span className="font-semibold">Last Air Date: </span>
-        {data.last_air_date}
-      </p>
-      <p className="text-lg">{data.overview}</p>
-      {console.log(data)}
+        {/* details */}
+        <div>
+          <p className='text-sm text-slate-400'>
+            <span className='font-semibold'>Seasons: </span>
+            {data.number_of_seasons}
+          </p>
+          <p className='text-sm text-slate-400'>
+            <span className='font-semibold'>Episodes: </span>
+            {data.number_of_episodes}
+          </p>
+          <p className='text-sm text-slate-400'>
+            <span className='font-semibold'>Last Air Date: </span>
+            {data.last_air_date}
+          </p>
+        </div>
+
+        {/* overview */}
+        <p className='text-lg'>{data.overview}</p>
+      </div>
     </main>
   );
 };
